@@ -58,6 +58,8 @@ class Register extends Component {
       .catch((err) => {
         if (err.code === 'auth/email-already-in-use') {
           this.showAlert('Ya existe una cuenta con este correo electrónico', 'warning');
+        } else if (err.code === 'auth/weak-password') {
+          this.showAlert('La contraseña debe ser ', 'danger');
         }
       })
     } else {
@@ -65,12 +67,15 @@ class Register extends Component {
     }
   }
 
-  isEqualPassword() {
-    return this.state.form.passwordConfirmation === this.state.form.password;
+  isValidPassword() {
+    if ( this.state.form.password.length == 0) {
+      return true;
+    }
+    return this.state.form.passwordConfirmation === this.state.form.password && this.state.form.password.length >= 6;
   }
 
   render() {
-    const validPassword = this.isEqualPassword();
+    const validPassword = this.isValidPassword();
     const showAlert = this.state.alert.show;
     return (
       <>
@@ -90,7 +95,7 @@ class Register extends Component {
             <Form.Control type="password" name="passwordConfirmation" placeholder="Confirma la contraseña" 
               value={this.state.form.passwordConfirmation} onChange={this.handleChange} isInvalid={!validPassword} required />
               <Form.Control.Feedback type="invalid">
-                Las contraseñas deben ser iguales
+                Las contraseñas deben ser iguales y mínimo 6 caracteres
               </Form.Control.Feedback>
           </Form.Group>
 
