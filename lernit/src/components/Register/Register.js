@@ -72,7 +72,7 @@ class Register extends Component {
   }
 
   isValidPassword() {
-    if ( this.state.form.password.length == 0) {
+    if ( this.state.form.password.length === 0) {
       return true;
     }
     return this.state.form.passwordConfirmation === this.state.form.password && this.state.form.password.length >= 6;
