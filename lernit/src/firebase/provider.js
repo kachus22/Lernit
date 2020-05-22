@@ -7,7 +7,7 @@ export default class FirebaseProvider extends Component {
     super(props);
     this.fb = new Firebase();
     this.state = {
-      user: '',
+      user: null,
       fb: this.fb
     }
   }

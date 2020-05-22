@@ -11,11 +11,9 @@ export default class extends Component {
     return (
       <Router>
         <Switch>
-          <AuthRoute exact path={path.HOME} component={App}/>
-          <PublicRoute exact path={path.REGISTER}>
-            <Register />
-          </PublicRoute>
-          <PublicRoute exact path={path.LOGIN} component={Login}/>
+          <PublicRoute exact path={path.REGISTER} component={Register} />
+          <PublicRoute exact path={path.LOGIN} component={Login} />
+          <AuthRoute exact path={path.HOME} component={App} />
         </Switch>
       </Router>
     );
