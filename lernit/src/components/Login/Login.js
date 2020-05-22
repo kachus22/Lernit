@@ -31,7 +31,7 @@ export default class Login extends Component {
   handleChange(event) {
     let fieldName = event.target.name;
     let fleldVal = event.target.value;
-    this.setState({form: {...this.state.form, [fieldName]: fleldVal}})
+    this.setState({ form: { ...this.state.form, [fieldName]: fleldVal } })
   }
 
   handleSubmit(event) {
@@ -39,13 +39,15 @@ export default class Login extends Component {
     event.stopPropagation();
     const form = event.currentTarget;
     if (form.checkValidity()) {
-      this.context.login(this.state.form.email, this.state.form.password)
+      this.context.fb.login(this.state.form.email, this.state.form.password)
       .then((res) =>{
         console.log(res); // TODO: Redirect to home
       })
       .catch((err) => {
-        if (err.code === 'auth/email-already-in-use') {
-          this.showAlert('Ya existe una cuenta con este correo electrónico', 'warning');
+        if (err.code === 'auth/wrong-password') {
+          this.showAlert('La contraseña ingresada es incorrecta', 'warning');
+        } else {
+          this.showAlert('Un error inesperado a ocurrido', 'danger');
         }
       })
     } else {
