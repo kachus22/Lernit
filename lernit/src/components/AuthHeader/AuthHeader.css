@@ -19,4 +19,5 @@
 .sub-header {
   display: block;
   font-size: calc(3px + 2vmin);
+  color: rgb(230, 230, 230);
 }
