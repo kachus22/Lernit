@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Login from './components/Login';
+import Register from './components/Register';
+import { FirebaseProvider } from './firebase';
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <Login />
+    <FirebaseProvider>
+      <Register />
+    </FirebaseProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
