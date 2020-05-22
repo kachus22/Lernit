@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Alert from 'react-bootstrap/Alert';
+import { withRouter } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import CustomAlert from 'components/CustomAlert';
 import { FirebaseContext } from '../../firebase';
 import './Login.css';
 
@@ -10,7 +11,7 @@ const defaultFormValues = {
   password: ''
 }
 
-export default class Login extends Component {
+class Login extends Component {
   static contextType = FirebaseContext
 
   constructor(props) {
@@ -21,7 +22,8 @@ export default class Login extends Component {
         message: '',
         show: false,
         variant: 'danger'
-      }
+      },
+      isLoading: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -39,17 +41,20 @@ export default class Login extends Component {
     event.stopPropagation();
     const form = event.currentTarget;
     if (form.checkValidity()) {
+      this.setState({...this.state, isLoading: true});
       this.context.fb.login(this.state.form.email, this.state.form.password)
-      .then((res) =>{
-        console.log(res); // TODO: Redirect to home
-      })
-      .catch((err) => {
-        if (err.code === 'auth/wrong-password') {
-          this.showAlert('La contraseña ingresada es incorrecta', 'warning');
-        } else {
-          this.showAlert('Un error inesperado a ocurrido', 'danger');
-        }
-      })
+        .then((res) =>{
+          this.setState({...this.state, isLoading: false});
+          console.log(res);
+        })
+        .catch((err) => {
+          this.setState({...this.state, isLoading: false});
+          if (err.code === 'auth/wrong-password') {
+            this.showAlert('La contraseña ingresada es incorrecta', 'warning');
+          } else {
+            this.showAlert('Un error inesperado a ocurrido', 'danger');
+          }
+        })
     } else {
       this.showAlert('Revisa bien tus datos', 'danger');
     }
@@ -67,7 +72,7 @@ export default class Login extends Component {
 
     return (
       <>
-      <div className="Login">
+      <div className="Login-component">
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formEmail">
             <Form.Control type="email" name="email" placeholder="Correo electrónico" 
@@ -80,19 +85,17 @@ export default class Login extends Component {
           </Form.Group>
 
           <div className="actions">
-            <Button variant="primary-lernit" className="transition-3d-hover" type="submit"> Iniciar Sesión </Button>
+            <Button variant="primary-lernit" className="transition-3d-hover" disabled={this.state.isLoading} type="submit">
+              {this.state.isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+            </Button>
             <Button variant="primary-lernit" className="transition-3d-hover" onClick={() => this.props.history.push("/register")}> No tengo cuenta </Button>
           </div>
         </Form>
       </div>
-      {showAlert && (
-        <Alert variant={this.state.alert.variant}>
-        <p>
-          {this.state.alert.message}
-        </p>
-      </Alert>
-      )}
+      <CustomAlert showAlert={showAlert} variant={this.state.alert.variant} message={this.state.alert.message} />
       </>
     );
   }
 }
+
+export default withRouter(Login);

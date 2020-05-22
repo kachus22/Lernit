@@ -1,30 +1,30 @@
 @media all and (min-width: 480px) {
-  .Login {
+  .Login-component {
     padding: 60px 0;
   }
-  .Login form {
+  .Login-component form {
     max-width: 320px;
   }
 }
 
 @media all and (max-width: 480px) {
-  .Login {
+  .Login-component {
     padding: 30px 10px;
   }
-  .Login form {
+  .Login-component form {
     max-width: 320px;
   }
 }
 
-.Login form {
+.Login-component form {
   margin: 0 auto;
 }
 
-.Login .actions {
+.Login-component .actions {
   display: flex;
   flex-direction: column;
 }
 
-.Login .actions .btn {
+.Login-component .actions .btn {
   margin: 10px 0px;
 }
