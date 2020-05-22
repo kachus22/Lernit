@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Alert from 'react-bootstrap/Alert';
+import { withRouter } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import CustomAlert from 'components/CustomAlert';
 import { FirebaseContext } from '../../firebase';
 import './Login.css';
 
@@ -10,7 +11,7 @@ const defaultFormValues = {
   password: ''
 }
 
-export default class Login extends Component {
+class Login extends Component {
   static contextType = FirebaseContext
 
   constructor(props) {
@@ -85,14 +86,10 @@ export default class Login extends Component {
           </div>
         </Form>
       </div>
-      {showAlert && (
-        <Alert variant={this.state.alert.variant}>
-        <p>
-          {this.state.alert.message}
-        </p>
-      </Alert>
-      )}
+      <CustomAlert showAlert={showAlert} variant={this.state.alert.variant} message={this.state.alert.message} />
       </>
     );
   }
 }
+
+export default withRouter(Login);

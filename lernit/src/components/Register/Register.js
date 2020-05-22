@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Alert from 'react-bootstrap/Alert';
+import CustomAlert from 'components/CustomAlert';
 import { FirebaseContext } from '../../firebase';
 import './Register.css';
 
@@ -11,7 +12,7 @@ const defaultFormValues = {
   passwordConfirmation: ''
 }
 
-export default class Register extends Component {
+class Register extends Component {
   static contextType = FirebaseContext
 
   constructor(props) {
@@ -99,14 +100,10 @@ export default class Register extends Component {
           </div>
         </Form>
       </div>
-      {showAlert && (
-        <Alert variant={this.state.alert.variant}>
-        <p>
-          {this.state.alert.message}
-        </p>
-      </Alert>
-      )}
+      <CustomAlert showAlert={showAlert} variant={this.state.alert.variant} message={this.state.alert.message} />
       </>
     );
   }
 }
+
+export default withRouter(Register);
