@@ -4,10 +4,6 @@ import './AuthHeader.css';
 
 
 export default class extends Component {
-  constructor(props) {
-    super(props);
-    console.log(props);
-  }
   render() {
     return (
       <header className="Auth-Header">
