@@ -1,24 +1,48 @@
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import * as path from './routes';
 import Login from 'components/Login';
 import Register from 'components/Register';
+import { FirebaseContext } from '../firebase';
 import App from '../App.js';
 
-export default function() {
-  return (
-    <Router>
-      <Switch>
-      <Route exact path={path.HOME} component={App}/>
-        <Route exact path={path.REGISTER}>
-          <Register />
-        </Route>
-        <Route exact path={path.LOGIN} component={Login}/>
-      </Switch>
-    </Router>
-  );
+export default class extends Component {
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <AuthRoute exact path={path.HOME} component={App}/>
+          <PublicRoute exact path={path.REGISTER}>
+            <Register />
+          </PublicRoute>
+          <PublicRoute exact path={path.LOGIN} component={Login}/>
+        </Switch>
+      </Router>
+    );
+  }
+}
+
+class AuthRoute extends Component {
+  static contextType = FirebaseContext
+
+  render() {
+    console.log(this.context.user === null);
+    if(this.context.user === null)
+      return (<Redirect to={path.LOGIN} />);
+    return(
+      <Route { ...this.props } />
+    )
+  }
+}
+
+class PublicRoute extends Component {
+  static contextType = FirebaseContext
+
+  render() {
+    if(this.context.user !== null)
+      return (<Redirect to={path.HOME} />);
+    return(
+      <Route { ...this.props } />
+    )
+  }
 }
