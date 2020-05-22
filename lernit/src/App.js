@@ -10,6 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      uid: null,
       counter: 0
     }
   }
@@ -25,7 +26,7 @@ class App extends Component {
       // Using firestorage
       const ref = that.context.fb.counterByUID(user.uid)
       ref.onSnapshot((doc) => {
-        that.setState({ counter: doc.data().counter });
+        that.setState({ uid: user.uid, counter: doc.data().counter });
       });
     });
   }
@@ -38,6 +39,16 @@ class App extends Component {
       .catch((err) => {
         console.log('error', err);
       })
+  }
+
+  plusOne() {
+    this.context.fb.counterByUID(this.state.uid).set({ counter: this.state.counter + 1,})
+      .then((doc) => {
+        console.log(doc)
+      })
+      .catch((docErr) => {
+        console.log('error', docErr);
+      });
   }
 
   render() {
