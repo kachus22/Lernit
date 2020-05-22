@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
-import { FirebaseContext } from '../../firebase'
+import { FirebaseContext } from '../../firebase';
 import './Register.css';
 
 const defaultFormValues = {
@@ -50,7 +50,7 @@ export default class Register extends Component {
     event.stopPropagation();
     const form = event.currentTarget;
     if (form.checkValidity() && this.isEqualPassword()) {
-      this.context.createUser("test@test.com", "cacacaca")
+      this.context.fb.createUser(this.state.form.email, this.state.form.password)
       .then((res) =>{
         console.log(res); // TODO: Redirect to home
       })
@@ -77,17 +77,17 @@ export default class Register extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formEmail">
             <Form.Control type="email" name="email" placeholder="Correo electrónico" 
-              value={this.state.email} onChange={this.handleChange} required />
+              value={this.state.form.email} onChange={this.handleChange} required />
           </Form.Group>
   
           <Form.Group controlId="formPassword">
             <Form.Control type="password" name="password" placeholder="Contraseña" 
-              value={this.state.password} onChange={this.handleChange} required />
+              value={this.state.form.password} onChange={this.handleChange} required />
           </Form.Group>
 
           <Form.Group controlId="formPasswordConfirmation">
             <Form.Control type="password" name="passwordConfirmation" placeholder="Confirma la contraseña" 
-              value={this.state.passwordConfirmation} onChange={this.handleChange} isInvalid={!validPassword} required />
+              value={this.state.form.passwordConfirmation} onChange={this.handleChange} isInvalid={!validPassword} required />
               <Form.Control.Feedback type="invalid">
                 Las contraseñas deben ser iguales
               </Form.Control.Feedback>
@@ -95,7 +95,7 @@ export default class Register extends Component {
 
           <div className="actions">
             <Button variant="primary-lernit" className="transition-3d-hover" type="submit"> Crear Cuenta </Button>
-            <Button variant="primary-lernit" className="transition-3d-hover"> Ya tengo cuenta </Button>
+            <Button variant="primary-lernit" className="transition-3d-hover" onClick={() => this.props.history.push("/login")}> Ya tengo cuenta </Button>
           </div>
         </Form>
       </div>
