@@ -1,0 +1,30 @@
+@media all and (min-width: 480px) {
+  .Login {
+    padding: 60px 0;
+  }
+  .Login form {
+    max-width: 320px;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .Login {
+    padding: 30px 10px;
+  }
+  .Login form {
+    max-width: 320px;
+  }
+}
+
+.Login form {
+  margin: 0 auto;
+}
+
+.Login .actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.Login .actions .btn {
+  margin: 10px 0px;
+}

@@ -1,0 +1,30 @@
+@media all and (min-width: 480px) {
+  .Register {
+    padding: 60px 0;
+  }
+  .Register form {
+    max-width: 320px;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .Register {
+    padding: 30px 10px;
+  }
+  .Register form {
+    max-width: 320px;
+  }
+}
+
+.Register form {
+  margin: 0 auto;
+}
+
+.Register .actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.Register .actions .btn {
+  margin: 10px 0px;
+}
