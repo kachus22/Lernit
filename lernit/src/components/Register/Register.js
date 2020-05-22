@@ -52,7 +52,7 @@ export default class Register extends Component {
     if (form.checkValidity() && this.isEqualPassword()) {
       this.context.fb.createUser(this.state.form.email, this.state.form.password)
       .then((res) =>{
-        console.log(res); // TODO: Redirect to home
+        console.log(res);
       })
       .catch((err) => {
         if (err.code === 'auth/email-already-in-use') {
