@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Register from './components/Register';
+import Router from './routes';
 import { FirebaseProvider } from './firebase';
 
 
@@ -11,7 +11,7 @@ import { FirebaseProvider } from './firebase';
 ReactDOM.render(
   <React.StrictMode>
     <FirebaseProvider>
-      <Register />
+      <Router />
     </FirebaseProvider>
   </React.StrictMode>,
   document.getElementById('root')
