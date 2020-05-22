@@ -77,17 +77,17 @@ export default class Register extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formEmail">
             <Form.Control type="email" name="email" placeholder="Correo electrónico" 
-              value={this.state.email} onChange={this.handleChange} required />
+              value={this.state.form.email} onChange={this.handleChange} required />
           </Form.Group>
   
           <Form.Group controlId="formPassword">
             <Form.Control type="password" name="password" placeholder="Contraseña" 
-              value={this.state.password} onChange={this.handleChange} required />
+              value={this.state.form.password} onChange={this.handleChange} required />
           </Form.Group>
 
           <Form.Group controlId="formPasswordConfirmation">
             <Form.Control type="password" name="passwordConfirmation" placeholder="Confirma la contraseña" 
-              value={this.state.passwordConfirmation} onChange={this.handleChange} isInvalid={!validPassword} required />
+              value={this.state.form.passwordConfirmation} onChange={this.handleChange} isInvalid={!validPassword} required />
               <Form.Control.Feedback type="invalid">
                 Las contraseñas deben ser iguales
               </Form.Control.Feedback>
