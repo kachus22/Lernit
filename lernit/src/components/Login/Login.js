@@ -22,7 +22,8 @@ class Login extends Component {
         message: '',
         show: false,
         variant: 'danger'
-      }
+      },
+      isLoading: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -40,17 +41,20 @@ class Login extends Component {
     event.stopPropagation();
     const form = event.currentTarget;
     if (form.checkValidity()) {
+      this.setState({...this.state, isLoading: true});
       this.context.fb.login(this.state.form.email, this.state.form.password)
-      .then((res) =>{
-        console.log(res); // TODO: Redirect to home
-      })
-      .catch((err) => {
-        if (err.code === 'auth/wrong-password') {
-          this.showAlert('La contraseña ingresada es incorrecta', 'warning');
-        } else {
-          this.showAlert('Un error inesperado a ocurrido', 'danger');
-        }
-      })
+        .then((res) =>{
+          this.setState({...this.state, isLoading: false});
+          console.log(res);
+        })
+        .catch((err) => {
+          this.setState({...this.state, isLoading: false});
+          if (err.code === 'auth/wrong-password') {
+            this.showAlert('La contraseña ingresada es incorrecta', 'warning');
+          } else {
+            this.showAlert('Un error inesperado a ocurrido', 'danger');
+          }
+        })
     } else {
       this.showAlert('Revisa bien tus datos', 'danger');
     }
@@ -81,7 +85,9 @@ class Login extends Component {
           </Form.Group>
 
           <div className="actions">
-            <Button variant="primary-lernit" className="transition-3d-hover" type="submit"> Iniciar Sesión </Button>
+            <Button variant="primary-lernit" className="transition-3d-hover" disabled={this.state.isLoading} type="submit">
+              {this.state.isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+            </Button>
             <Button variant="primary-lernit" className="transition-3d-hover" onClick={() => this.props.history.push("/register")}> No tengo cuenta </Button>
           </div>
         </Form>

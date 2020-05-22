@@ -23,7 +23,8 @@ class Register extends Component {
         message: '',
         show: false,
         variant: 'danger'
-      }
+      },
+      isLoading: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -50,12 +51,15 @@ class Register extends Component {
     event.preventDefault();
     event.stopPropagation();
     const form = event.currentTarget;
-    if (form.checkValidity() && this.isEqualPassword()) {
+    if (form.checkValidity() && this.isValidPassword()) {
+      this.setState({...this.state, isLoading: true})
       this.context.fb.createUser(this.state.form.email, this.state.form.password)
       .then((res) =>{
+        this.setState({...this.state, isLoading: false});
         console.log(res);
       })
       .catch((err) => {
+        this.setState({...this.state, isLoading: false});
         if (err.code === 'auth/email-already-in-use') {
           this.showAlert('Ya existe una cuenta con este correo electrónico', 'warning');
         } else if (err.code === 'auth/weak-password') {
@@ -100,7 +104,9 @@ class Register extends Component {
           </Form.Group>
 
           <div className="actions">
-            <Button variant="primary-lernit" className="transition-3d-hover" type="submit"> Crear Cuenta </Button>
+            <Button variant="primary-lernit" className="transition-3d-hover" disabled={this.state.isLoading} type="submit">
+              {this.state.isLoading ? 'Registrando...' : 'Crear Cuenta'}
+            </Button>
             <Button variant="primary-lernit" className="transition-3d-hover" onClick={() => this.props.history.push("/login")}> Ya tengo cuenta </Button>
           </div>
         </Form>
