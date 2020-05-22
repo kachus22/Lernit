@@ -50,7 +50,7 @@ export default class Register extends Component {
     event.stopPropagation();
     const form = event.currentTarget;
     if (form.checkValidity() && this.isEqualPassword()) {
-      this.context.createUser(this.state.form.email, this.state.form.password)
+      this.context.fb.createUser(this.state.form.email, this.state.form.password)
       .then((res) =>{
         console.log(res); // TODO: Redirect to home
       })
