@@ -1,6 +1,9 @@
 # Lernit
 React project for Lernit job application
 
+# Demo (Live)
+[Demo demo demo](http:///www.enriquegarcia.me)
+
 # Setup (Testing purposes)
 `git clone https://github.com/kachus22/Lernit.git`
 
