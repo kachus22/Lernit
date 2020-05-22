@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
-import { FirebaseContext } from '../../firebase'
+import { FirebaseContext } from '../../firebase';
 import './Register.css';
 
 const defaultFormValues = {
