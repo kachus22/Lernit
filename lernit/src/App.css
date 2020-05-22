@@ -47,3 +47,21 @@
 .actions .btn {
   margin: 20px 10px;
 }
+
+.btn-plus-lernit {
+  background: linear-gradient(to right,rgba(255, 255, 255, 0.65),rgba(226, 220, 220, 0.65));
+  color: white;
+  font-size: 50px;
+  padding: 20px;
+  width: 150px;
+}
+
+.btn-plus-lernit:hover {
+  box-shadow: 0 4px 17px rgba(230, 221, 221, 0.4);
+  color: white;
+}
+
+.counter {
+  font-size: 5rem;
+  font-weight: 500;
+}

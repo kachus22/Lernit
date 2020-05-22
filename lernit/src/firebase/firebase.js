@@ -2,6 +2,8 @@ import app from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 import 'firebase/analytics';
+import 'firebase/database'
+import 'firebase/firestore'
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -23,9 +25,44 @@ export default class Firebase {
     }
     app.analytics();
     this.auth = app.auth();
+    this.database = app.database();
+    this.firestore = app.firestore();
   }
 
-  createUser = (email, password) => this.auth.createUserWithEmailAndPassword(email, password);
+  createUser = (email, password) => new Promise((res, rej) => {
+    this.auth.createUserWithEmailAndPassword(email, password)
+      .then(registeredUser => {
+        // Using realtime database
+        // this.database.ref('counters').child(registeredUser.user.uid).set({
+        //     counter: 0,
+        // }).then((doc) => {
+        //     console.log(doc)
+        // }).catch((error) => {
+        //     console.log('error ', error)
+        // })
+        // Using firestorage
+        this.firestore.collection('users').doc(registeredUser.user.uid)
+          .set({
+            counter: 0,
+          }).then((doc) => {
+            res(registeredUser);
+          })
+          .catch((docErr) => {
+            console.log('error', docErr);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        rej(err);
+      });
+  });
+
   login = (email, password) => this.auth.signInWithEmailAndPassword(email, password)
+
   logout = () => this.auth.signOut();
+  
+  // Using realtime database
+  // counterByUID = (uid) => this.database.ref('counters').child(uid)
+  // Using firestorage
+  counterByUID = (uid) => this.firestore.collection('users').doc(uid);
 }
