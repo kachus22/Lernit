@@ -44,10 +44,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload {this.state.counter}.
-          </p>
+          <span className="counter">{this.state.counter}</span>
+          <p>Contador</p>
           <Button variant="plus-lernit" className="transition-3d-hover" onClick={() => this.plusOne()}>+</Button>
         </header>
         <div className="actions">

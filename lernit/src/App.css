@@ -60,3 +60,8 @@
   box-shadow: 0 4px 17px rgba(55,125,255,.35);
   color: white;
 }
+
+.counter {
+  font-size: 5rem;
+  font-weight: 500;
+}
