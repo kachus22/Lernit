@@ -26,7 +26,6 @@ class AuthRoute extends Component {
   static contextType = FirebaseContext
 
   render() {
-    console.log(this.context.user === null);
     if(this.context.user === null)
       return (<Redirect to={path.LOGIN} />);
     return(
