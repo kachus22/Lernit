@@ -27,4 +27,5 @@ export default class Firebase {
 
   createUser = (email, password) => this.auth.createUserWithEmailAndPassword(email, password);
   login = (email, password) => this.auth.signInWithEmailAndPassword(email, password)
+  logout = () => this.auth.signOut();
 }

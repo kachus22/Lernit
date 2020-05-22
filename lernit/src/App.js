@@ -6,9 +6,15 @@ import './App.css';
 
 class App extends Component {
   static contextType = FirebaseContext
-  
-  logout() {
 
+  logout() {
+    this.context.fb.logout()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log('error', err);
+      })
   }
 
   render() {
@@ -29,7 +35,7 @@ class App extends Component {
           </a>
         </header>
         <div className="actions">
-          <Button variant="primary-lernit" className="transition-3d-hover" onClick={this.logout}>Cerrar sesión</Button>
+          <Button variant="primary-lernit" className="transition-3d-hover" onClick={() => this.logout}>Cerrar sesión</Button>
         </div>
       </div>
     );
