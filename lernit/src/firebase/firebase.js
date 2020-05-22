@@ -24,4 +24,6 @@ export default class Firebase {
     app.analytics();
     this.auth = app.auth();
   }
+
+  createUser = (email, password) => this.auth.createUserWithEmailAndPassword(email, password);
 }
