@@ -35,7 +35,7 @@ class App extends Component {
           </a>
         </header>
         <div className="actions">
-          <Button variant="primary-lernit" className="transition-3d-hover" onClick={() => this.logout}>Cerrar sesión</Button>
+          <Button variant="primary-lernit" className="transition-3d-hover" onClick={() => this.logout()}>Cerrar sesión</Button>
         </div>
       </div>
     );
