@@ -17,8 +17,8 @@ export default class Login extends Component {
           </Form.Group>
 
           <div className="actions">
-            <Button type="submit"> Iniciar Sesión </Button>
-            <Button> No tengo cuenta </Button>
+            <Button variant="primary-lernit" className="transition-3d-hover" type="submit"> Iniciar Sesión </Button>
+            <Button variant="primary-lernit" className="transition-3d-hover" > No tengo cuenta </Button>
           </div>
         </Form>
       </div>
