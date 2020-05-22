@@ -24,7 +24,7 @@ export default class FirebaseProvider extends Component {
 
   render() {
     return (
-      <FirebaseContext.Provider value={this.fb, this.state}>
+      <FirebaseContext.Provider value={this.state}>
         {this.props.children}
       </FirebaseContext.Provider>
     )
