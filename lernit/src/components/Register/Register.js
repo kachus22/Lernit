@@ -95,7 +95,7 @@ export default class Register extends Component {
 
           <div className="actions">
             <Button variant="primary-lernit" className="transition-3d-hover" type="submit"> Crear Cuenta </Button>
-            <Button variant="primary-lernit" className="transition-3d-hover"> Ya tengo cuenta </Button>
+            <Button variant="primary-lernit" className="transition-3d-hover" onClick={() => this.props.history.push("/login")}> Ya tengo cuenta </Button>
           </div>
         </Form>
       </div>

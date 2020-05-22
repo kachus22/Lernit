@@ -81,7 +81,7 @@ export default class Login extends Component {
 
           <div className="actions">
             <Button variant="primary-lernit" className="transition-3d-hover" type="submit"> Iniciar Sesión </Button>
-            <Button variant="primary-lernit" className="transition-3d-hover" > No tengo cuenta </Button>
+            <Button variant="primary-lernit" className="transition-3d-hover" onClick={() => this.props.history.push("/register")}> No tengo cuenta </Button>
           </div>
         </Form>
       </div>
