@@ -73,7 +73,7 @@ export default class Register extends Component {
     const showAlert = this.state.alert.show;
     return (
       <>
-      <div className="Register">
+      <div className="Register-component">
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formEmail">
             <Form.Control type="email" name="email" placeholder="Correo electrónico" 

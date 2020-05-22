@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import * as path from './routes';
-import Login from 'components/Login';
-import Register from 'components/Register';
+import Login from 'views/Login';
+import Register from 'views/Register';
 import { FirebaseContext } from '../firebase';
 import App from '../App.js';
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Button from 'react-bootstrap/Button';
 import { FirebaseContext } from './firebase';
 import './App.css';
