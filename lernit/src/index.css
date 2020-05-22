@@ -18,3 +18,22 @@ code {
   bottom: 0;
   margin-bottom: 0px;
 }
+
+.btn-primary-lernit {
+  background: #4239CD;
+  color: white;
+}
+
+.btn-primary-lernit:hover {
+  box-shadow: 0 4px 17px rgba(55,125,255,.35);
+  color: white;
+}
+
+.transition-3d-hover {
+  transition: all .2s ease-in-out;
+}
+
+.transition-3d-hover:hover {
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+}

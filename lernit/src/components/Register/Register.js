@@ -94,8 +94,8 @@ export default class Register extends Component {
           </Form.Group>
 
           <div className="actions">
-            <Button type="submit"> Crear Cuenta </Button>
-            <Button> Ya tengo cuenta </Button>
+            <Button variant="primary-lernit" className="transition-3d-hover" type="submit"> Crear Cuenta </Button>
+            <Button variant="primary-lernit" className="transition-3d-hover"> Ya tengo cuenta </Button>
           </div>
         </Form>
       </div>
