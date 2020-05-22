@@ -18,7 +18,7 @@ export default class Login extends Component {
 
           <div className="actions">
             <Button type="submit"> Iniciar Sesión </Button>
-            <Button> Crear Cuenta </Button>
+            <Button> No tengo cuenta </Button>
           </div>
         </Form>
       </div>
